@@ -24,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
                 right: 35,
                 child: IconButton(
                   onPressed: () {
-                    Navigator.pushNamed(
+                    Navigator.pushNamedAndRemoveUntil(
                         context, EditeProfileScreen.editeProfileRoute);
                   },
                   icon: Icon(
@@ -136,6 +136,12 @@ class ProfileScreen extends StatelessWidget {
                                   text: displayUserData
                                       .address, //'Address'//dataNewsModel.address,
                                 ),
+                                ElevatedButton(
+                                  onPressed: (){
+                                    provider.deleteProfile(displayUserData);
+                                  },
+                                   child: Text('Remove Data'),
+                                   ),
                               ],
                             ),
                           ],

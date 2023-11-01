@@ -8,8 +8,9 @@ class ModelProvider extends ChangeNotifier {
       HiveFunctionBox.getProfileBox().values.toList();
   notifyListeners();
 
-//   Future<void> deleteProfiles(List<int> keys) async {
-//   final box = HiveFunctionBox.getProfileBox();
-//   await box.deleteAll(keys);
-// }
+  Future<void> deleteProfile(ProfileHiveModel profile) async {
+    final box = HiveFunctionBox.getProfileBox();
+    await box.delete(profile.key);
+    notifyListeners();
+  }
 }

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:master/Models/ProfileUserModels/profile_hive_model.dart';
 import 'package:master/Views/Screens/nav_bar/nav_bar_screens/profile_screens/profile_screen.dart';
-//import 'package:provider/provider.dart';
 import '../../../../../Helper/hive_function_box.dart';
 import '../../../../Widgets/custom_TextFormFiled.dart';
 
-//import '../../../../../Models/model_provider.dart';
 class EditeProfileScreen extends StatefulWidget {
   const EditeProfileScreen({Key? key}) : super(key: key);
   static String editeProfileRoute = 'editeProfileRoute';
@@ -33,10 +31,11 @@ class _EditeProfileScreenState extends State<EditeProfileScreen> {
       addressEdit,
       phoneNumberEdit,
       ageEdit;
-  //ProfileModel? editProfileModel;
   @override
   Widget build(BuildContext context) {
     //final provider = Provider.of<ModelProvider>(context, listen: false);
+    final box = HiveFunctionBox.getProfileBox();
+    late ProfileHiveModel newData;
     return Form(
       key: formKey,
       child: Container(
@@ -70,17 +69,15 @@ class _EditeProfileScreenState extends State<EditeProfileScreen> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      final newData = ProfileHiveModel(
-                        email: emailEdit, // 'Mohamed@example.com',
-                        userName: userNameEdit, //'Mohamed Ahmed',
-                        country: countryEdit, //'UAE',
-                        address: addressEdit, // '123 Main St',
-                        phoneNumber: phoneNumberEdit, //'01158747703',
+                      newData = ProfileHiveModel(
+                        email: emailEdit, 
+                        userName: userNameEdit,
+                        country: countryEdit,
+                        address: addressEdit, 
+                        phoneNumber: phoneNumberEdit,
                         age: ageEdit, //'22',
                       );
-                      final box = HiveFunctionBox.getProfileBox();
                       box.add(newData);
-                      //deleteProfiles
                       Navigator.pushNamed(context, ProfileScreen.profileRoute);
                     } else {
                       autoValidateMode = AutovalidateMode.always;
@@ -121,7 +118,9 @@ class _EditeProfileScreenState extends State<EditeProfileScreen> {
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        //await provider.deleteProfile(newData);
+                      },
                       icon: const Icon(
                         Icons.camera_alt_outlined,
                         size: 25,

@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           MainNavBar.mainNavBarRoute: (context) => const MainNavBar(),
           HomeScreen.homeRoute: (context) => const HomeScreen(),
           EditeProfileScreen.editeProfileRoute: (context) =>
-              const EditeProfileScreen(),
+               EditeProfileScreen(),
           ProfileScreen.profileRoute: (context) => ProfileScreen(),
           CategoriesScreen.categoriesScreenRoute: (context) =>
               CategoriesScreen(),
